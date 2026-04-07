@@ -1,5 +1,26 @@
+# 使用Service
+
+## 创建service
+```bash
+$ ng generate service CUSTOM_NAME
+```
+
+## 对Service进行配置
+使用`@Injectable`进行Service配置，使得其他组件中可以进行依赖注入。
+```ts
+@Injectable()
+export class UserService{}
+```
+如果需要保证全局唯一实例，可以使用`providedIn: 'root'`进行配置。在大多数情况下，`Service`都可以进行全局唯一的设置。
+```ts
+@Injectable({
+  providedIn: 'root',
+})
+```
+
+## 使用HTTPClient
 HTTP Client属于Service，因此需要通过依赖注入的方式进行使用。
-## 配置configure
+### 配置configure
 首先怕配置provider, 在`app.config.ts`中添加配置
 ```typescript
 export const appConfig: ApplicationConfig = {
@@ -8,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     ]
 }
 ```
-## 在程序中注入
+### 在程序中注入
 ```typescript
 import { HttpClient } from '@angular/common/http'
 export class App {
@@ -20,7 +41,7 @@ export class App {
 @Autowired
 private Service InjectService;
 ```
-## 使用HttpClient
+### 使用HttpClient
 ```typescript
 export class App {
     http = inject(HttpClient);
@@ -64,5 +85,9 @@ export class AdviceService {
     }
 }
 ```
+
+## 状态管理
+
+在`Angular`中要进行状态管理，不需要像`Vue`一样使用`Pinia`，由于`Angular`中可以对`Service`设置全局唯一，因此可以通过使`Service`全局唯一并暴露需要的API，通过它与`localStorage`交互来进行类似于`Pinia`的状态管理。
 
 *written in 4/5/2026 By Ruize li*

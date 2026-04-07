@@ -20,9 +20,17 @@ ng g c [component-name]
 ```
 创建后的`selector`名称会在输入的`component-name`前加上`app-`前缀。
 
-*written in 4/1/2026 By Ruize li*
-
 ## 创建服务
 ```bash
 ng g service [service-name]
 ```
+
+## 启动项目
+在指定`--package-manager=pnpm`的情况下，可以直接使用
+```bash
+pnpm start
+```
+进行项目启动。
+
+*written in 4/1/2026 By Ruize li*
+*updated in 4/6/2026 By Ruize Li*
