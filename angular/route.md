@@ -37,7 +37,8 @@ export const routes: Routes = [
 export const routes: Routes = [
   {
     path: 'dashboard',
-    loadComponent: () => import('./features/dashboard/dashboard.component')
+    loadComponent: () => 
+      import('./features/dashboard/dashboard.component')
       .then(m => m.DashboardComponent)
   }
 ];
@@ -50,16 +51,21 @@ export const routes: Routes = [
 export const routes: Routes = [
   {
     path: 'admin',
-    loadComponent: () => import('./pages/admin/admin.component')
-        .then(m => m.AdminComponent),
+    loadComponent: () => 
+      import('./pages/admin/admin.component')
+      .then(m => m.AdminComponent),
     children: [
       {
         path: 'users',
-        loadComponent: () => import('./pages/admin/users/users.component').then(m => m.UsersComponent)
+        loadComponent: () => 
+          import('./pages/admin/users/users.component')
+          .then(m => m.UsersComponent)
       },
       {
         path: 'stats',
-        loadComponent: () => import('./pages/admin/stats/stats.component').then(m => m.StatsComponent)
+        loadComponent: () => 
+          import('./pages/admin/stats/stats.component')
+          .then(m => m.StatsComponent)
       }
     ]
   }
