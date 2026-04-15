@@ -51,7 +51,7 @@ app.use(router)
 http://localhost:5173/user/:id
 ```
 的路由，可以在访问对应路由时，在`vue`文件中使用
-```
+```js
 const userId = route.params.id
 ```
 获取对应的参数。
@@ -92,6 +92,12 @@ export default defineConfig({
       },
     ],
   },
+```
+
+## 路径跳转
+路径跳转可通过声明式的方法或则编程式的方法实现，声明式的方法直接写在模板中，
+```html
+<router-link to="/about">关于我们</router-link>
 ```
 
 *written By Ruize.li on 11/4/2026*
