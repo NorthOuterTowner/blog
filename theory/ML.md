@@ -67,7 +67,16 @@ s_new = series.apply(transform)
 通过这样的方法对`Series`的内容逐个调用自定义的转换函数，从而确保不会出现问题。
 
 ## LightGBM
+一种GBDT算法，似乎比XGBoost快，很好用。
 
 ## CatBoost
 
+对于CatBoost的原理我不太了解，只清楚也是GBDT的一种，他对于特征的“分类特征”和“数值特征”进行了单独区分，对于数值特征可以使用float64和int64，但是对于分类特征只允许int64和str，而不允许real number或者NaN。
+CatBoost有一个很有趣的一点，就是他对于分类特征，会将其进行编码，从int或str编码成为单独的数字，而不是通过one-hot编码，通过这种处理方式*似乎*可以提升该结构的性能。说似乎是看他们这么说，但是我实际使用的过程中感觉虽然比LightGBM略强，和XGBoost接近，但是实际上在工程上差别不大。
+需要注意的一点是，对于CatBoost，最好不要在训练后进行col顺序的调整，因为当你传递列名进行辨别时，CatBoost内部是会将其转换为idx的，而这个idx是在训练时保存在内部的，也就是说如果你调整了col的顺序而之后又根据列名进行操作，如果你运气好的话，可能恰好由于提取的特征根本不符合规则导致CatBoost的pyc报错，但如果运气不好，则可能会在成功运行的情况下得出错误的答案。
+
 ## TabNet
+
+这是一种**深度表格数据学习**（Deep Tabular Learning）架构。它的核心目标是在处理表格数据（Tabular Data）时，既能拥有深度学习的表征能力，又能保留决策树（如 XGBoost、LightGBM）的可解释性和特征选择优势。
+TabNet作为一种深度学习算法，模仿了GBDT，在每一步学习一个掩码。他的每一步由两个部分组成：特征变换器（Feature Transformer）：负责提取特征。它分为两个部分：一部分参数是全局共享的（学习跨步骤的通用特征），另一部分是步骤特定的（学习当前步骤的特有特征）。为了保证训练稳定，它大量使用了 GLU（Gated Linear Units） 激活函数。注意力变换器（Attentive Transformer）：决定当前步骤该“看”哪些特征。它利用前一步处理过的信息，通过 $Softmax$ 产生一个稀疏掩码。
+$BTW$，感觉实力不如$XGBoost$ $or$ $TabNet$。
