@@ -1,7 +1,7 @@
 
 # 通过 Flask 实现 GET 和 POST 的不同形式 RESTful API
 
-*这篇博客有Gemini完成*
+*这篇博客由Gemini完成*
 
 在现代 Web 开发中，**RESTful API** 是前后端分离架构的核心。Flask 作为一个轻量级、灵活的 Python Web 框架，提供了非常直观的方式来处理 HTTP 请求。本文将详细介绍如何使用 Flask 接收不同形式的 GET 和 POST 数据。
 
@@ -43,7 +43,7 @@ def get_user(user_id):
     # 模拟从数据库获取数据
     user_data = {
         "id": user_id,
-        "name": "李瑞泽",
+        "name": user_name,
         "profession": "Software Engineer"
     }
     return jsonify(user_data), 200
