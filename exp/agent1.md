@@ -1,10 +1,8 @@
 # 基于企业数据的 Agent 开发经历
 
-## Chapter 1
+## Chapter 1 - 架构设计
 
 本Agent作为满足企业内部日常工作的Agent，需要具备覆盖本部门日常工作的大量精细化功能，因此我们决定使用细粒度的skill完成工作，在我看来，我们skill的粒度之细已经达到了tool的水平，当然，因为当前skill的数量并不非常多，因此这种粒度的skill其实也可以的，并且这也更利于编排。
-
-### 架构设计
 
 总的来说，我们采用单个中心进行Agent调度的Agent Group架构，中心agent称为orchestra，同时具有若干agent将自己的功能进行描述，在收到用户请求时利用orchestra的能力进行agent的编排和调度，告知agent其需要执行的skill。
 
